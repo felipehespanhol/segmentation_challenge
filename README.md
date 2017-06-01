@@ -1,4 +1,4 @@
-RD Challenge
+Segmentation Challenge
 ============
 
 Requirements
