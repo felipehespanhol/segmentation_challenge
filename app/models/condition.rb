@@ -16,7 +16,7 @@
 #
 
 class Condition < ApplicationRecord
-  belongs_to :segment
+  belongs_to :segment, inverse_of: :conditions
 
-  validates :field, :name, :term, :segment_id, presence: true
+  validates :field, :name, :term, :segment, presence: true
 end

@@ -10,9 +10,11 @@
 #
 
 class Segment < ApplicationRecord
-  has_many :conditions
+  has_many :conditions, inverse_of: :segment
 
   validates :name, :operator, presence: true
+
+  accepts_nested_attributes_for :conditions
 
   def search_hash
     conditions.inject({}) do |result, condition|

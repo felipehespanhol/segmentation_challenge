@@ -15,6 +15,7 @@ RSpec.describe Segment, type: :model do
   it { is_expected.to have_many(:conditions) }
   it { is_expected.to validate_presence_of(:name) }
   it { is_expected.to validate_presence_of(:operator) }
+  it { is_expected.to accept_nested_attributes_for(:conditions) }
 
   describe "#search_hash" do
     context "when operator is nil" do
