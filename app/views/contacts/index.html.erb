@@ -6,9 +6,13 @@
         <option value="2">São Paulo</option>
       </select>
     </div>
-    <div class="small-12 columns search-form-actions">
+    <div class="small-6 columns search-form-actions">
       <%= submit_tag t('search'), class: 'button primary' %>
-      <a href="#" class="button primary"><%= t('create') %> <%= Segment.model_name.human %></a>
+    </div>
+    <div class="small-6 columns search-form-actions right">
+      <a href="<%= segments_path %>"><%= t('list') %> <%= Segment.model_name.human(count: 2) %></a>
+      <span>|</span>
+      <a href="<%= new_segment_path %>"><%= t('create') %> <%= Segment.model_name.human %></a>
     </div>
   <% end %>
 

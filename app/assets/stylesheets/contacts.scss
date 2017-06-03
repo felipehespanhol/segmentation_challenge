@@ -1,3 +1,10 @@
 .search-form-actions {
   margin-top: 1rem;
+  &.right {
+    line-height: 2.5rem;
+    text-align: right;
+    span {
+      margin: 0 1rem;
+    }
+  }
 }
