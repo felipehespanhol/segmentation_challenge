@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    models:
+      contact:
+        one: Contato
+        other: Contatos
+      segment:
+        one: Segmento
+        other: Segmentos
+    attributes:
+      contact:
+        name: Nome
+        email: Email
+        age: Idade
+        state: Estado
+        job: Cargo
+

@@ -1,2 +1,39 @@
-<h1>Contacts#index</h1>
-<p>Find me in app/views/contacts/index.html.erb</p>
+<div class="row">
+  <%= form_tag contacts_path, method: :get do %>
+    <div class="small-12 columns">
+      <select name="segments_ids" id="segments-ids-select" data-select-two multiple="multiple" placeholder="<%= t('search') + ' ' + Segment.model_name.human(count: 2) %>">
+        <option value="1">Adulto</option>
+        <option value="2">São Paulo</option>
+      </select>
+    </div>
+    <div class="small-12 columns search-form-actions">
+      <%= submit_tag t('search'), class: 'button primary' %>
+      <a href="#" class="button primary"><%= t('create') %> <%= Segment.model_name.human %></a>
+    </div>
+  <% end %>
+
+  <hr />
+
+  <table>
+    <thead>
+      <tr>
+        <th><%= Contact.human_attribute_name(:name) %></th>
+        <th><%= Contact.human_attribute_name(:state) %></th>
+        <th><%= Contact.human_attribute_name(:age) %></th>
+        <th><%= Contact.human_attribute_name(:email) %></th>
+        <th><%= Contact.human_attribute_name(:job) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @contacts.each do |contact| %>
+        <tr>
+          <td><%= contact.name %></td>
+          <td><%= contact.state %></td>
+          <td><%= contact.age %></td>
+          <td><%= contact.email %></td>
+          <td><%= contact.job %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -14,5 +14,12 @@
  *= require_self
  *= require foundation_and_overrides
  *= require select2
-
  */
+
+.container {
+  margin-top: 2rem;
+}
+
+.select2-selection {
+  /*height: 2.5rem;*/
+}
