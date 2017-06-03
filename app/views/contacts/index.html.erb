@@ -10,9 +10,11 @@
       <%= submit_tag t('search'), class: 'button primary' %>
     </div>
     <div class="small-6 columns search-form-actions right">
-      <a href="<%= segments_path %>"><%= t('list', model: Segment.model_name.human(count: 2)) %></a>
-      <span>|</span>
-      <a href="<%= new_segment_path %>"><%= t('helpers.submit.create', model: Segment.model_name.human) %></a>
+      <div class="links">
+        <a href="<%= segments_path %>"><%= t('list', model: Segment.model_name.human(count: 2)) %></a>
+        <span>|</span>
+        <a href="<%= new_segment_path %>"><%= t('helpers.submit.create', model: Segment.model_name.human) %></a>
+      </div>
     </div>
   <% end %>
 

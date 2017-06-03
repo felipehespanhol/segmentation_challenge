@@ -1,1 +1,57 @@
-<h1>Segments#new</h1>
+<div class="row">
+  <div class="small-12 columns">
+    <h1><%= t('new', model: Segment.model_name.human) %></h1>
+
+    <%= form_for @segment do |f| %>
+      <div class="row">
+        <div class="small-12 medium-6 columns end">
+          <label>
+            <%= Segment.human_attribute_name(:name) %>
+            <%= f.text_field :name %>
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-12 columns">
+          <h4><%= Condition.model_name.human(count: 2) %></h4>
+        </div>
+        <%= f.fields_for :conditions do |condition_form| %>
+          <div class="small-4 medium-2 columns end">
+            <label>
+              <%= Condition.human_attribute_name(:field) %>
+              <%= condition_form.text_field :field %>
+            </label>
+          </div>
+
+          <div class="small-4 medium-2 columns end">
+            <label>
+              <%= Condition.human_attribute_name(:name) %>
+              <%= condition_form.text_field :name %>
+            </label>
+          </div>
+
+          <div class="small-4 medium-2 columns end">
+            <label>
+              <%= Condition.human_attribute_name(:term) %>
+              <%= condition_form.text_field :term %>
+            </label>
+          </div>
+        <% end %>
+      </div>
+
+      <br />
+      <%= f.submit class: "button primary" %>
+    <% end %>
+
+    <br />
+    <div class="links">
+      <%= link_to t('back'), contacts_path %>
+      <span>|</span>
+      <%= link_to t('list', model: Segment.model_name.human(count: 2)), segments_path %>
+    </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,6 +1,9 @@
 pt-BR:
   activerecord:
     models:
+      condition:
+        one: Condição
+        other: Condições
       contact:
         one: Contato
         other: Contatos
@@ -8,10 +11,16 @@ pt-BR:
         one: Segmento
         other: Segmentos
     attributes:
+      condition:
+        field: Campo
+        name: Condição
+        term: Termo
       contact:
         name: Nome
         email: Email
         age: Idade
         state: Estado
         job: Cargo
+      segment:
+        name: Nome
 
