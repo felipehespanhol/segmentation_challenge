@@ -16,10 +16,20 @@
  *= require select2
  */
 
+@import 'foundation-icons';
+
 .container {
   margin-top: 2rem;
 }
 
-.select2-selection {
-  /*height: 2.5rem;*/
+.icon-cell {
+  width: 3rem;
+  text-align: center;
+}
+
+.links {
+  margin: 1rem 1rem;
+  span {
+    margin: 0 1rem;
+  }
 }

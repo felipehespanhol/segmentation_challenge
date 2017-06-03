@@ -1,1 +1,30 @@
-<h1>Segments#index</h1>
+<div class="row">
+  <div class="small-12 columns">
+    <h1><%= Segment.model_name.human(count: 2) %></h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th><%= Segment.human_attribute_name(:name) %></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @segments.each do |segment| %>
+          <tr>
+            <td><%= segment.name %></td>
+            <td class="icon-cell"><%= link_to edit_segment_path(segment) do %><i class="fi-pencil"></i><% end %></td>
+            <td class="icon-cell"><%= link_to segment_path(segment), method: :delete do %><i class="fi-trash"></i><% end %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class="links">
+      <%= link_to t('back'), contacts_path %>
+      <span>|</span>
+      <%= link_to t('helpers.submit.create', model: Segment.model_name.human), new_segment_path %>
+    </div>
+  </div>
+</div>

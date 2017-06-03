@@ -1,5 +1,6 @@
 pt-BR:
+  back: Voltar
   create: Criar
-  list: Listar
+  list: Listar %{model}
   project_title: Desafio RD
   search: Buscar

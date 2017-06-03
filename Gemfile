@@ -38,6 +38,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'annotate'
 gem 'ransack'
 gem 'foundation-rails'
+gem 'foundation-icons-sass-rails'
+
 gem 'select2-rails'
 
 group :development, :test do
