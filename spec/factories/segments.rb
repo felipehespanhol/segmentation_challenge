@@ -1,16 +1,16 @@
 # == Schema Information
 #
-# Table name: contacts
+# Table name: segments
 #
 #  id         :integer          not null, primary key
 #  name       :string
-#  email      :string
-#  age        :integer
-#  state      :string
-#  job        :string
+#  operator   :string           default("and")
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class Contact < ApplicationRecord
+FactoryGirl.define do 
+  factory :segment do
+    name "International Emails" 
+  end
 end

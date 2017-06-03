@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170531051303) do
+ActiveRecord::Schema.define(version: 20170603164934) do
+
+  create_table "conditions", force: :cascade do |t|
+    t.string   "field"
+    t.string   "name"
+    t.string   "term"
+    t.integer  "segment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["segment_id"], name: "index_conditions_on_segment_id"
+  end
 
   create_table "contacts", force: :cascade do |t|
     t.string   "name"
@@ -24,10 +34,9 @@ ActiveRecord::Schema.define(version: 20170531051303) do
 
   create_table "segments", force: :cascade do |t|
     t.string   "name"
-    t.string   "conditions"
-    t.string   "operators"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "operator",   default: "and"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
 end
