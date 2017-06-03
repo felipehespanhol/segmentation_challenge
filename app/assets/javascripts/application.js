@@ -14,6 +14,12 @@
 //= require jquery_ujs
 //= require foundation
 //= require turbolinks
+//= require select2-full
+//= require select2_locale_pt-BR
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+$(document).ready(function() {
+  $('[data-select-two]').select2();
+})
