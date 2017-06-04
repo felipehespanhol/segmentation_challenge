@@ -1,6 +1,11 @@
 Segmentation Challenge
 ============
 
+Hosted in Heroku
+----------------
+
+See https://segmentationchallenge.herokuapp.com/
+
 Requirements
 ------------
 
