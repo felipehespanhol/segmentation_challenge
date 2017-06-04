@@ -48,4 +48,60 @@ RSpec.describe ContactsController, type: :controller do
       end
     end
   end
+
+  describe "#new" do
+    it 'returns http success' do
+      get :new
+      expect(response).to be_success
+    end
+  end
+
+  describe "#create" do
+    context "when attributes are valid" do
+      let!(:contact_attributes) { 
+        {
+          contact: {
+            name: "Felipe Hespanhol",
+            email: "felipe@email.com",
+            state: "Rio de Janeiro",
+            age: 32,
+            job: "Software Developer"
+          }
+        }
+      }
+
+      it 'creates one contact' do
+        expect {
+          post :create, params: contact_attributes
+        }.to change {
+          Contact.count
+        }.by 1
+      end
+
+      it 'creates a contact with name' do
+        post :create, params: contact_attributes
+        contact = Contact.last
+        expect(contact.name).to eq(contact_attributes[:contact][:name])
+        expect(contact.email).to eq(contact_attributes[:contact][:email])
+        expect(contact.state).to eq(contact_attributes[:contact][:state])
+        expect(contact.age).to eq(contact_attributes[:contact][:age])
+        expect(contact.job).to eq(contact_attributes[:contact][:job])
+      end
+
+      it 'redirects to contacts#index' do
+        post :create, params: contact_attributes
+        expect(response).to redirect_to(contacts_path)
+      end
+    end
+
+    context "when attributes are not valid" do
+      let!(:contact_attributes) { { contact: {} } }
+
+      it "renders 'new'" do
+        post :create, params: contact_attributes
+        expect(response).to render_template(:new)
+      end
+    end
+  end
+
 end

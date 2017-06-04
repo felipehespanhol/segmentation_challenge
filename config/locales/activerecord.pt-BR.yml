@@ -20,7 +20,7 @@ pt-BR:
         email: Email
         age: Idade
         state: Estado
-        job: Cargo
+        job: Profissão
       segment:
         name: Nome
 

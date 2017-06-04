@@ -19,6 +19,7 @@ FactoryGirl.define do
     sequence(:email) { |n| "felipe#{n}@totalcommit.com" }
     state "Rio de Janeiro"
     age { rand(15..70) }
+    sequence(:job) { |n| "Profession #{n}" }
 
     factory :international_contact
     factory :brazilian_contact do

@@ -15,6 +15,8 @@
         <a href="<%= segments_path %>"><%= t('list', model: Segment.model_name.human(count: 2)) %></a>
         <span>|</span>
         <a href="<%= new_segment_path %>"><%= t('helpers.submit.create', model: Segment.model_name.human) %></a>
+        <span>|</span>
+        <%= link_to t('helpers.submit.create', model: Contact.model_name.human), new_contact_path %>
       </div>
     </div>
   <% end %>
