@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170603164934) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "conditions", force: :cascade do |t|
     t.string   "field"
     t.string   "name"
@@ -19,7 +22,7 @@ ActiveRecord::Schema.define(version: 20170603164934) do
     t.integer  "segment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["segment_id"], name: "index_conditions_on_segment_id"
+    t.index ["segment_id"], name: "index_conditions_on_segment_id", using: :btree
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -39,4 +42,5 @@ ActiveRecord::Schema.define(version: 20170603164934) do
     t.datetime "updated_at",                 null: false
   end
 
+  add_foreign_key "conditions", "segments"
 end
