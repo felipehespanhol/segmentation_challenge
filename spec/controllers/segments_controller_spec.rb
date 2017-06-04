@@ -71,6 +71,37 @@ RSpec.describe SegmentsController, type: :controller do
         expect(condition2.name).to eq(segment_attributes[:segment][:conditions_attributes][1][:name])
         expect(condition2.term).to eq(segment_attributes[:segment][:conditions_attributes][1][:term])
       end
+
+      it 'redirects to contacts#index' do
+        post :create, params: segment_attributes
+        expect(response).to redirect_to(contacts_path)
+      end
+    end
+
+    context "when attributes are not valid" do
+      let!(:segment_attributes) { { segment: {} } }
+
+      it "renders 'new'" do
+        post :create, params: segment_attributes
+        expect(response).to render_template(:new)
+      end
+    end
+  end
+
+  describe "#destroy" do
+    let!(:segment) { create(:segment) }
+
+    it 'destroys segment' do
+      expect {
+        delete :destroy, { id: segment.id }
+      }.to change {
+        Segment.count
+      }.by -1
+    end
+
+    it 'redirects to segments#index' do
+      delete :destroy, { id: segment.id }
+      expect(response).to redirect_to(segments_path)
     end
   end
 end
