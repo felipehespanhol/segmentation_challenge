@@ -1,5 +1,6 @@
 Rails.application.configure do
-  config.action_cable.url = "ws://segmentationchallenge.herokuapp.com/cable"
+  config.web_socket_server_url = "wss://segmentationchallenge.herokuapp.com/cable"
+  config.action_cable.allowed_request_origins = ['https://segmentationchallenge.herokuapp.com', 'http://segmentationchallenge.herokuapp.com']
 
   # Settings specified here will take precedence over those in config/application.rb.
 
