@@ -25,11 +25,11 @@ RSpec.describe Contact, type: :model do
       create(:segment, name: ".com", conditions_attributes: [{field: 'email', name: 'end', term: '.com'}]) }
 
     it 'returns matching contacts' do
-      expect(Contact.search_with_segments(adult_segment, dot_com_segment)).to include(adult_dot_com_contact)
+      expect(Contact.search_with_segments([adult_segment, dot_com_segment])).to include(adult_dot_com_contact)
     end
 
     it 'does not return unmatching contacts' do
-      contacts = Contact.search_with_segments(adult_segment, dot_com_segment)
+      contacts = Contact.search_with_segments([adult_segment, dot_com_segment])
       expect(contacts).not_to include(adult_dot_uk_contact)
       expect(contacts).not_to include(teen_contact)
     end
