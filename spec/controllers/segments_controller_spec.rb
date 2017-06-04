@@ -93,14 +93,14 @@ RSpec.describe SegmentsController, type: :controller do
 
     it 'destroys segment' do
       expect {
-        delete :destroy, { id: segment.id }
+        delete :destroy, params: { id: segment.id }
       }.to change {
         Segment.count
       }.by -1
     end
 
     it 'redirects to segments#index' do
-      delete :destroy, { id: segment.id }
+      delete :destroy, params: { id: segment.id }
       expect(response).to redirect_to(segments_path)
     end
   end
