@@ -10,7 +10,7 @@
 #
 
 class Segment < ApplicationRecord
-  has_many :conditions, inverse_of: :segment
+  has_many :conditions, inverse_of: :segment, dependent: :destroy
 
   validates :name, :operator, presence: true
 
