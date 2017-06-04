@@ -1,5 +1,5 @@
 <div class="row">
-  <%= form_tag contacts_path, method: :get do %>
+  <%= form_tag contacts_path, method: :get, id: 'contacts-search-form', data: { current_params: params.to_param } do %>
     <div class="small-12 columns">
       <select name="segments_ids[]" id="segments-ids-select" data-select-two multiple="multiple" placeholder="<%= t('search') + ' ' + Segment.model_name.human(count: 2) %>">
         <% @segments_list.each do |segment| %>
@@ -7,10 +7,10 @@
         <% end %>
       </select>
     </div>
-    <div class="small-6 columns search-form-actions">
+    <div class="small-12 medium-2 columns search-form-actions">
       <%= submit_tag t('search'), class: 'button primary' %>
     </div>
-    <div class="small-6 columns search-form-actions right">
+    <div class="small-12 medium-10 columns search-form-actions right">
       <div class="links">
         <a href="<%= segments_path %>"><%= t('list', model: Segment.model_name.human(count: 2)) %></a>
         <span>|</span>
@@ -23,30 +23,7 @@
 
   <hr />
 
-  <table>
-    <thead>
-      <tr>
-        <th><%= Contact.human_attribute_name(:name) %></th>
-        <th><%= Contact.human_attribute_name(:state) %></th>
-        <th><%= Contact.human_attribute_name(:age) %></th>
-        <th><%= Contact.human_attribute_name(:email) %></th>
-        <th><%= Contact.human_attribute_name(:job) %></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @contacts.each do |contact| %>
-        <tr>
-          <td><%= contact.name %></td>
-          <td><%= contact.state %></td>
-          <td><%= contact.age %></td>
-          <td><%= contact.email %></td>
-          <td><%= contact.job %></td>
-          <td class="icon-cell"><%= link_to edit_contact_path(contact) do %><i class="fi-pencil"></i><% end %></td>
-          <td class="icon-cell"><%= link_to contact_path(contact), method: :delete do %><i class="fi-trash"></i><% end %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div id="contacts-area">
+    <%= render "contacts_table" %>
+  </div>
 </div>

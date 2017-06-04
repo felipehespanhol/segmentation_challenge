@@ -1,0 +1,26 @@
+<table>
+  <thead>
+    <tr>
+      <th><%= Contact.human_attribute_name(:name) %></th>
+      <th><%= Contact.human_attribute_name(:state) %></th>
+      <th><%= Contact.human_attribute_name(:age) %></th>
+      <th><%= Contact.human_attribute_name(:email) %></th>
+      <th><%= Contact.human_attribute_name(:job) %></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @contacts.each do |contact| %>
+      <tr>
+        <td><%= contact.name %></td>
+        <td><%= contact.state %></td>
+        <td><%= contact.age %></td>
+        <td><%= contact.email %></td>
+        <td><%= contact.job %></td>
+        <td class="icon-cell"><%= link_to edit_contact_path(contact) do %><i class="fi-pencil"></i><% end %></td>
+        <td class="icon-cell"><%= link_to contact_path(contact), method: :delete do %><i class="fi-trash"></i><% end %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

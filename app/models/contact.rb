@@ -19,6 +19,6 @@ class Contact < ApplicationRecord
   def self.search_with_segments(segments)
     segments.inject(self.all) do |result, segment|
       result.ransack(segment.search_hash).result
-    end
+    end.order(name: :asc)
   end
 end
