@@ -1,4 +1,5 @@
 pt-BR:
+  add: Adicionar %{model}
   back: Voltar
   create: Criar
   edit: Editar %{model}

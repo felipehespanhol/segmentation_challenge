@@ -57,6 +57,7 @@ GEM
     bindex (0.5.0)
     builder (3.2.3)
     byebug (9.0.6)
+    cocoon (1.2.9)
     coderay (1.1.1)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -227,6 +228,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   byebug
+  cocoon
   coffee-rails (~> 4.2)
   factory_girl_rails
   foundation-icons-sass-rails

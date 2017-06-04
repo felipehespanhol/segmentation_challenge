@@ -14,7 +14,9 @@ class Segment < ApplicationRecord
 
   validates :name, :operator, presence: true
 
-  accepts_nested_attributes_for :conditions
+  accepts_nested_attributes_for :conditions,
+    reject_if: proc { |attributes| attributes[:field].blank? || attributes[:term].blank? },
+    allow_destroy: true
 
   def search_hash
     conditions.inject({}) do |result, condition|

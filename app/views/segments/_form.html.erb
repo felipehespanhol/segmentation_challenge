@@ -1,0 +1,33 @@
+<%= form_for @segment do |f| %>
+  <div class="row">
+    <div class="small-12 medium-6 columns end">
+      <label>
+        <%= Segment.human_attribute_name(:name) %>
+        <%= f.text_field :name %>
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 columns">
+      <h4><%= Condition.model_name.human(count: 2) %></h4>
+    </div>
+
+    <div class="small-12 columns conditions-area">
+      <%= f.fields_for :conditions do |condition_form| %>
+        <%= render "condition_fields", f: condition_form %>
+      <% end %>
+    </div>
+
+    <br />
+
+    <div class="small-12 columns">
+      <%= link_to_add_association t('add', model: Condition.model_name.human), f, :conditions,
+        { 'data-association-insertion-method' => 'append',
+          'data-association-insertion-node' => '.conditions-area' }%>
+    </div>
+  </div>
+
+  <br />
+  <%= f.submit class: "button primary" %>
+<% end %>

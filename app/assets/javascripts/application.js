@@ -15,6 +15,7 @@
 //= require foundation
 //= require select2-full
 //= require select2_locale_pt-BR
+//= require cocoon
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

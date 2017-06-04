@@ -1,0 +1,47 @@
+<div class="row conditions-fields" data-conditions-fields>
+  <div class="small-3 medium-3 columns">
+    <label>
+      <%= Condition.human_attribute_name(:field) %>
+      <%= f.select :field, [
+        [Contact.human_attribute_name(:name), :name],
+        [Contact.human_attribute_name(:email), :email],
+        [Contact.human_attribute_name(:state), :state],
+        [Contact.human_attribute_name(:age), :age],
+        [Contact.human_attribute_name(:job), :job],
+      ], {}, { data: { condition_field_select: true } } %>
+    </label>
+  </div>
+
+  <div class="small-4 medium-3 columns">
+    <label>
+      <%= Condition.human_attribute_name(:name) %>
+      <%= f.select :name, Condition.i18n_string_field_allowed_names, {}, {
+          data: {
+            condition_name_select: true,
+            string_names: Condition.i18n_string_field_allowed_names,
+            integer_names: Condition.i18n_integer_field_allowed_names
+          }
+        } %>
+
+    </label>
+  </div>
+
+  <div class="small-4 medium-3 columns">
+    <label>
+      <%= Condition.human_attribute_name(:term) %>
+      <%= f.text_field :term, data: { condition_string_term_input: true } %>
+      <%= f.select :term, Condition::STATE_NAMES, { disabled: true }, {
+          style: 'display: none',
+          data: { condition_state_term_input: true} } %>
+      <%= f.number_field :term,
+          disabled: true,
+          style: 'display: none',
+          data: { condition_integer_term_input: true } %>
+    </label>
+  </div>
+
+  <div class="small-1 medium 3 columns end remove-condition-link">
+    <%= link_to_remove_association content_tag(:i, '', class: 'fi-x large'), f  %>  
+  </div>
+</div>
+

@@ -24,9 +24,22 @@ class SegmentsController < ApplicationController
     redirect_to segments_path
   end
 
+  def edit
+    @segment = Segment.find(params[:id])
+  end
+
+  def update
+    @segment = Segment.find(params[:id])
+    if @segment.update(segment_params)
+      redirect_to segments_path
+    else
+      render :edit
+    end
+  end
+
   private
 
   def segment_params
-    params.fetch(:segment, {}).permit(:name, conditions_attributes: [:field, :name, :term])
+    params.fetch(:segment, {}).permit(:name, conditions_attributes: [:id, :field, :name, :term, :_destroy])
   end
 end

@@ -8,6 +8,12 @@ var Segment = {
   },
   interfaceActions: function() {
     this.listenConditionFieldSelect();
+    this.listenConditionRemoveLink();
+  },
+  listenConditionRemoveLink: function() {
+    $('.remove_fields').on('click', function() {
+      alert('asdf');
+    });
   },
   listenConditionFieldSelect: function() {
     $(document).on('change', '[data-condition-field-select]', function() {
