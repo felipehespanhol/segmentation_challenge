@@ -89,7 +89,7 @@ RSpec.describe SegmentsController, type: :controller do
   end
 
   describe "#destroy" do
-    let!(:segment) { create(:segment) }
+    let!(:segment) { create(:segment, conditions_attributes: [{field: 'name', name: 'eq', term: 'Felipe'}]) }
 
     it 'destroys segment' do
       expect {
