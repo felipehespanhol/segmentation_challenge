@@ -38,6 +38,7 @@ class ContactsController < ApplicationController
   def destroy
     @contact = Contact.find(params[:id])
     @contact.destroy
+    ActionCable.server.broadcast 'searches', contact_id: @contact.id
     redirect_to contacts_path
   end
 
