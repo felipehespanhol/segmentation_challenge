@@ -20,7 +20,7 @@ RSpec.describe Contact, type: :model do
   it { is_expected.to validate_presence_of(:state) }
   it { is_expected.to validate_presence_of(:age) }
   it { is_expected.to validate_presence_of(:job) }
-  it { is_expected.to validate_numaricality_of(:age) }
+  it { is_expected.to validate_numericality_of(:age) }
 
   describe ".search_with_segments" do
     let!(:adult_dot_com_contact) { create(:contact, name: "Adriano", email: "adriano@email.com", age: 18) }
