@@ -1,6 +1,7 @@
 pt-BR:
   back: Voltar
   create: Criar
+  edit: Editar %{model}
   list: Listar %{model}
   new: Novo %{model}
   project_title: Desafio RD

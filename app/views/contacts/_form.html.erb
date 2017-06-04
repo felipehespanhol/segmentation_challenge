@@ -1,0 +1,49 @@
+<%= form_for @contact do |f| %>
+  <div class="row">
+    <div class="small-12 medium-6 columns">
+      <label>
+        <%= Contact.human_attribute_name(:name) %>
+        <%= f.text_field :name, required: true %>
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 medium-6 columns">
+      <label>
+        <%= Contact.human_attribute_name(:email) %>
+        <%= f.text_field :email, required: true %>
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 medium-6 columns">
+      <label>
+        <%= Contact.human_attribute_name(:state) %>
+        <%= f.text_field :state, required: true %>
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 medium-6 columns">
+      <label>
+        <%= Contact.human_attribute_name(:age) %>
+        <%= f.number_field :age, required: true %>
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 medium-6 columns">
+      <label>
+        <%= Contact.human_attribute_name(:job) %>
+        <%= f.text_field :job, required: true %>
+      </label>
+    </div>
+  </div>
+
+  <br />
+  <%= f.submit class: "button primary" %>
+<% end %>

@@ -39,7 +39,7 @@ RSpec.describe ContactsController, type: :controller do
       }
 
       before do
-        get :index, { segments_ids: [segment.id] }
+        get :index, params: { segments_ids: [segment.id] }
       end
 
       it 'filters contact with segment' do
@@ -100,6 +100,57 @@ RSpec.describe ContactsController, type: :controller do
       it "renders 'new'" do
         post :create, params: contact_attributes
         expect(response).to render_template(:new)
+      end
+    end
+  end
+
+  describe "#edit" do
+    let!(:contact) { create(:contact) }
+
+    before do
+      get :edit, params: { id: contact.id }
+    end
+
+    it 'returns http success' do
+      expect(response).to be_success
+    end
+
+    it 'assigns @contact with given id' do
+      expect(assigns(:contact)).to eq(contact)
+    end
+  end
+
+  describe "#update" do
+    context "when valid params" do
+      let!(:contact)  { create(:contact, name: "Felipe") }
+      let!(:new_name) { 'Fabrício' }
+
+      before do
+        patch :update, params: { id: contact.id, contact: { name: new_name } }
+      end
+
+      it 'redirects to contacts path' do
+        expect(response).to redirect_to(contacts_path)
+      end
+
+      it 'updates contact name' do
+        expect(contact.reload.name).to eq(new_name)
+      end
+    end
+
+    context "when invalid params" do
+      let!(:contact)  { create(:contact, name: "Felipe") }
+
+      before do
+        patch :update, params: { id: contact.id, contact: { name: nil } }
+      end
+
+      it 'returns http success' do
+        expect(response).to be_success
+      end
+
+      it 'renders :edit template' do
+        expect(response).to render_template(:edit)
       end
     end
   end
