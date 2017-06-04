@@ -1,4 +1,4 @@
-<div class="row conditions-fields" data-conditions-fields>
+<div class="row conditions-fields nested-fields" data-conditions-fields>
   <div class="small-3 medium-3 columns">
     <label>
       <%= Condition.human_attribute_name(:field) %>
@@ -19,7 +19,8 @@
           data: {
             condition_name_select: true,
             string_names: Condition.i18n_string_field_allowed_names,
-            integer_names: Condition.i18n_integer_field_allowed_names
+            integer_names: Condition.i18n_integer_field_allowed_names,
+            selected: f.object.name
           }
         } %>
 
@@ -30,9 +31,12 @@
     <label>
       <%= Condition.human_attribute_name(:term) %>
       <%= f.text_field :term, data: { condition_string_term_input: true } %>
-      <%= f.select :term, Condition::STATE_NAMES, { disabled: true }, {
+      <%= f.select :term, Condition::STATE_NAMES, {}, {
+          disabled: true,
           style: 'display: none',
-          data: { condition_state_term_input: true} } %>
+          data: {
+            condition_state_term_input: true
+          } } %>
       <%= f.number_field :term,
           disabled: true,
           style: 'display: none',
@@ -41,7 +45,9 @@
   </div>
 
   <div class="small-1 medium 3 columns end remove-condition-link">
-    <%= link_to_remove_association content_tag(:i, '', class: 'fi-x large'), f  %>  
+    <% unless f.object == f.object.segment&.conditions&.first %>
+      <%= link_to_remove_association content_tag(:i, '', class: 'fi-x large'), f  %>  
+    <% end %>
   </div>
 </div>
 

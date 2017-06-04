@@ -40,6 +40,6 @@ class SegmentsController < ApplicationController
   private
 
   def segment_params
-    params.fetch(:segment, {}).permit(:name, conditions_attributes: [:id, :field, :name, :term, :_destroy])
+    params.fetch(:segment, {}).permit(:name, :operator, conditions_attributes: [:id, :field, :name, :term, :_destroy])
   end
 end

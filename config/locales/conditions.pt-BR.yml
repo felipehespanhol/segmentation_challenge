@@ -1,4 +1,7 @@
 pt-BR:
+  operators:
+    or: pelo menos uma condição
+    and: todas as condições
   condition_names:
     eq: "igual a"
     cont: "contém"

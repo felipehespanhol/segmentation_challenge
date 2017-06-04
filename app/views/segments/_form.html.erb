@@ -13,7 +13,14 @@
       <h4><%= Condition.model_name.human(count: 2) %></h4>
     </div>
 
-    <div class="small-12 columns conditions-area">
+    <div class="small-12 medium-6 columns">
+      <label>
+        <%= Segment.human_attribute_name(:operator) %>
+        <%= f.select :operator, Segment.i18n_operators %>
+      </label>
+    </div>
+
+    <div class="small-12 columns conditions-area" id="conditions">
       <%= f.fields_for :conditions do |condition_form| %>
         <%= render "condition_fields", f: condition_form %>
       <% end %>

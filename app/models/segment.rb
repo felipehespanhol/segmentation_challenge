@@ -24,4 +24,11 @@ class Segment < ApplicationRecord
       result
     end.merge(m: operator)
   end
+
+  def self.i18n_operators
+    [
+      [I18n.t('operators.and'), 'and'],
+      [I18n.t('operators.or'), 'or']
+    ]
+  end
 end

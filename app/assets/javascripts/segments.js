@@ -9,10 +9,12 @@ var Segment = {
   interfaceActions: function() {
     this.listenConditionFieldSelect();
     this.listenConditionRemoveLink();
+    this.initSelects();
   },
   listenConditionRemoveLink: function() {
-    $('.remove_fields').on('click', function() {
-      alert('asdf');
+    $("#conditions").on('cocoon:before-remove', function(e, condition) {
+      $(this).data('remove-timeout', 200);
+      condition.fadeOut('slow');
     });
   },
   listenConditionFieldSelect: function() {
@@ -20,7 +22,12 @@ var Segment = {
       Segment._setConditionNameSelectOptions(this);
       Segment._setConditionTermInput(this);
     });
+  },
+  initSelects: function() {
     $('[data-condition-field-select]').trigger('change');
+    $('[data-condition-name-select]').each(function() {
+      $(this).val($(this).data('selected'));
+    });
   },
   _setConditionNameSelectOptions: function(context) {
     var $conditionNameSelect = $(context).closest('[data-conditions-fields]').find('[data-condition-name-select]');
@@ -35,9 +42,10 @@ var Segment = {
   },
   _setConditionTermInput: function(context) {
     var selectedField = $(context).val();
-    var $stringTermInput  = $('[data-condition-string-term-input]');
-    var $stateTermInput   = $('[data-condition-state-term-input]');
-    var $integerTermInput = $('[data-condition-integer-term-input]');
+    var $conditionsFields = $(context).closest('[data-conditions-fields]');
+    var $stringTermInput  = $conditionsFields.find('[data-condition-string-term-input]');
+    var $stateTermInput   = $conditionsFields.find('[data-condition-state-term-input]');
+    var $integerTermInput = $conditionsFields.find('[data-condition-integer-term-input]');
     if (selectedField == 'age') {
       $integerTermInput.prop('disabled', false);
       $integerTermInput.show();;
