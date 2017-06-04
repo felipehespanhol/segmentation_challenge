@@ -17,25 +17,47 @@
           <h4><%= Condition.model_name.human(count: 2) %></h4>
         </div>
         <%= f.fields_for :conditions do |condition_form| %>
-          <div class="small-4 medium-2 columns end">
-            <label>
-              <%= Condition.human_attribute_name(:field) %>
-              <%= condition_form.text_field :field %>
-            </label>
-          </div>
+          <div class="conditions-fields" data-conditions-fields>
+            <div class="small-4 medium-2 columns end">
+              <label>
+                <%= Condition.human_attribute_name(:field) %>
+                <%= condition_form.select :field, [
+                  [Contact.human_attribute_name(:name), :name],
+                  [Contact.human_attribute_name(:email), :email],
+                  [Contact.human_attribute_name(:state), :state],
+                  [Contact.human_attribute_name(:age), :age],
+                  [Contact.human_attribute_name(:job), :job],
+                ], {}, { data: { condition_field_select: true } } %>
+              </label>
+            </div>
 
-          <div class="small-4 medium-2 columns end">
-            <label>
-              <%= Condition.human_attribute_name(:name) %>
-              <%= condition_form.text_field :name %>
-            </label>
-          </div>
+            <div class="small-4 medium-2 columns end">
+              <label>
+                <%= Condition.human_attribute_name(:name) %>
+                <%= condition_form.select :name, Condition.i18n_string_field_allowed_names, {}, {
+                    data: {
+                      condition_name_select: true,
+                      string_names: Condition.i18n_string_field_allowed_names,
+                      integer_names: Condition.i18n_integer_field_allowed_names
+                    }
+                  } %>
 
-          <div class="small-4 medium-2 columns end">
-            <label>
-              <%= Condition.human_attribute_name(:term) %>
-              <%= condition_form.text_field :term %>
-            </label>
+              </label>
+            </div>
+
+            <div class="small-4 medium-2 columns end">
+              <label>
+                <%= Condition.human_attribute_name(:term) %>
+                <%= condition_form.text_field :term, data: { condition_string_term_input: true } %>
+                <%= condition_form.select :term, Condition::STATE_NAMES, { disabled: true }, {
+                    style: 'display: none',
+                    data: { condition_state_term_input: true} } %>
+                <%= condition_form.number_field :term,
+                    disabled: true,
+                    style: 'display: none',
+                    data: { condition_integer_term_input: true } %>
+              </label>
+            </div>
           </div>
         <% end %>
       </div>

@@ -1,0 +1,10 @@
+pt-BR:
+  condition_names:
+    eq: "igual a"
+    cont: "contém"
+    start: "começa com"
+    end: "termina com"
+    lt: "menor que"
+    lteq: "menor que ou igual a"
+    gt: "maior que"
+    gteq: "maior que ou igual a"

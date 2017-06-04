@@ -23,6 +23,47 @@ class Condition < ApplicationRecord
 
   STRING_FIELD_ALLOWED_NAMES  = ['eq', 'cont', 'start', 'end']
   INTEGER_FIELD_ALLOWED_NAMES = ['lt', 'lteq', 'gt', 'gteq']
+  STATE_NAMES = [
+    "Acre",
+    "Alagoas",
+    "Amapá",
+    "Amazonas",
+    "Bahia",
+    "Ceará",
+    "Distrito Federal",
+    "Espírito Santo",
+    "Goiás",
+    "Maranhão",
+    "Mato Grosso",
+    "Mato Grosso do Sul",
+    "Minas Gerais",
+    "Pará",
+    "Paraíba",
+    "Paraná",
+    "Pernambuco",
+    "Piauí",
+    "Rio de Janeiro",
+    "Rio Grande do Norte",
+    "Rio Grande do Sul",
+    "Rondônia",
+    "Roraima",
+    "Santa Catarina",
+    "São Paulo",
+    "Sergipe",
+    "Tocantins",
+  ]
+
+  def self.i18n_string_field_allowed_names
+    STRING_FIELD_ALLOWED_NAMES.map do |allowed_name|
+      [I18n.t("condition_names.#{allowed_name}"), allowed_name]
+    end
+  end
+
+  def self.i18n_integer_field_allowed_names
+    INTEGER_FIELD_ALLOWED_NAMES.map do |allowed_name|
+      [I18n.t("condition_names.#{allowed_name}"), allowed_name]
+    end
+  end
 
   private
 

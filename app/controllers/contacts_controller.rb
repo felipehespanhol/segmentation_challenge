@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
   def index
-    @segments_list = Segment.all
+    @segments_list = Segment.order(name: :asc)
     @search_segments = Segment.where(id: params[:segments_ids])
     @contacts = Contact.search_with_segments(@search_segments)
   end
@@ -30,6 +30,12 @@ class ContactsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @contact = Contact.find(params[:id])
+    @contact.destroy
+    redirect_to contacts_path
   end
 
   private
