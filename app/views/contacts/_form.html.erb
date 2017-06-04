@@ -21,7 +21,7 @@
     <div class="small-12 medium-6 columns">
       <label>
         <%= Contact.human_attribute_name(:state) %>
-        <%= f.text_field :state, required: true %>
+        <%= f.select :state, Condition::STATE_NAMES, required: true %>
       </label>
     </div>
   </div>

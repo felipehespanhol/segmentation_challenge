@@ -23,22 +23,23 @@ RSpec.describe Contact, type: :model do
   it { is_expected.to validate_numericality_of(:age) }
 
   describe ".search_with_segments" do
-    let!(:adult_dot_com_contact) { create(:contact, name: "Adriano", email: "adriano@email.com", age: 18) }
-    let!(:adult_dot_uk_contact)  { create(:contact, name: "John", email: "john@email.uk", age: 18) }
+    let!(:adult_dot_com_contact) { create(:contact, name: "Adriano", email: "adriano@email.com", age: 28) }
+    let!(:adult_uk_contact)      { create(:contact, name: "John", email: "john@email.co.uk", age: 20) }
     let!(:teen_contact)          { create(:contact, name: "Josephin", email: "josephin@email.com", age: 17) }
-    let!(:adult_segment) {
-      create(:segment, name: "Adults", conditions_attributes: [{field: 'age', name: 'gteq', term: 18}]) }
-    let!(:dot_com_segment) {
-      create(:segment, name: ".com", conditions_attributes: [{field: 'email', name: 'end', term: '.com'}]) }
+    let!(:teen_segment) {
+      create(:segment, name: "Teens", conditions_attributes: [{field: 'age', name: 'lteq', term: 19}]) }
+    let!(:uk_segment) {
+      create(:segment, name: ".co.uk", conditions_attributes: [{field: 'email', name: 'end', term: '.co.uk'}]) }
 
     it 'returns matching contacts' do
-      expect(Contact.search_with_segments([adult_segment, dot_com_segment])).to include(adult_dot_com_contact)
+      contacts = Contact.search_with_segments([teen_segment, uk_segment])
+      expect(contacts).to include(teen_contact)
+      expect(contacts).to include(adult_uk_contact)
     end
 
     it 'does not return unmatching contacts' do
-      contacts = Contact.search_with_segments([adult_segment, dot_com_segment])
-      expect(contacts).not_to include(adult_dot_uk_contact)
-      expect(contacts).not_to include(teen_contact)
+      contacts = Contact.search_with_segments([teen_segment, uk_segment])
+      expect(contacts).not_to include(adult_dot_com_contact)
     end
   end
 end
